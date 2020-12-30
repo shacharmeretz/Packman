@@ -1,0 +1,233 @@
+p{
+    text-align: center;
+}
+a { 
+    text-decoration: none; 
+}
+h7{
+  font-size: 30px;
+}
+
+header {
+  padding: 3px;
+  text-align: left;
+  background-color: #333;
+  color: white;
+  font-size: 14px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
+
+.navigation {
+    background-color: #333;
+    font-size: 20px;
+    height: 24px;
+    padding: 14px 16px;
+}
+form {
+    text-align: center;
+    background: rgba(125, 149, 184, 0.61);
+    color: rgb(7, 1, 1);
+    padding: 20px;
+    width: 500px;
+    margin: 25px auto;
+  }
+  .welcome{
+    font-size: 40px;
+    text-align: center;
+  }
+  #lbllives , #display{
+    display: inline-block;
+}
+#losePoint , #display4{
+  display: inline-block;
+}
+#username , #display3{
+  display: inline-block;
+}
+#lblScore , #display1{
+  display: inline-block;
+}
+#lblTime , #display2{
+  display: inline-block;
+}
+
+
+
+
+
+#MONSTER , #display5{
+  display: inline-block;
+}
+
+#POINT , #display6{
+  display: inline-block;
+}
+
+#TIME , #display7{
+  display: inline-block;
+}
+
+#UP , #display8{
+  display: inline-block;
+}
+
+#DOWN , #display9{
+  display: inline-block;
+}
+
+#LEFT , #display10{
+  display: inline-block;
+}
+
+#RIGHT , #display11{
+  display: inline-block;
+}
+
+
+
+
+
+#newgame
+{
+  background: #030000;
+    color: rgb(255, 255, 255);
+    width: 15%;
+  
+    font-size: 15px;
+    height: 34px;
+    width: 190px;
+    
+}
+#gamecanvas , #showSetting , #newgame
+{
+  display: inline-block;
+  vertical-align: middle;
+}
+#gamecanvas
+{
+  height: 575px;
+}
+#showSetting{
+  border: 1px solid rgb(0, 0, 0);
+width: 155px;
+height: 575px;
+}
+
+  canvas {
+    width: 730px;
+    height: 575px;
+    border:1px solid #000000;
+}
+  
+  .welcome button{
+    background: #030000;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-bottom: 3px;
+    width: 15%;
+    margin: 25px auto;
+    font-size: 15px;
+    height: 40px;
+    line-height: 30px;
+    cursor: pointer;
+    border: 0;
+    display: block;
+  }
+ form input {
+    height: 25px;
+    line-height: 25px;
+    background: #fff;
+    color: #000;
+    padding: 0 6px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  form button {
+    background: #22e6cc;
+    color: rgb(12, 2, 2);
+    margin-top: 10px;
+    margin-bottom: 3px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border: 0;
+    display: block;
+  }
+
+  .error {
+    color: red;
+    margin-left: 5px;
+  }
+  
+  label.error {
+    display: inline;
+  }
+
+
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color:#ffffff;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 35%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close  {
+    color: rgb(14, 3, 3);
+    float: left;
+    padding-right: 100;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .close1, .close2 , .close3{
+    top: 8px;
+    left: 8px;
+    position: absolute;
+    color: rgb(14, 3, 3);
+    float: left;
+      padding-right: 100;
+    font-size: 40px;
+    font-weight: bold;
+}
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 40px;
+  }
+
+  #fivePoints1setting , #fivePoints2setting ,#twentyfivePoints1setting , #twentyfivePoints2setting, #fifteenPoints1setting , #fifteenPoints2setting
+  { 
+    visibility: hidden; 
+    }

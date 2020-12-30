@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="spongBob.jpg" type="image/icon type">
+
+
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+
+	<script type="text/javascript" src="validation.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+	<script type="text/javascript" src="storage.js"></script>
+	<script type="text/javascript" src="./setting.js"></script>
+	<script type="text/javascript" src="./monsters.js"></script>
+	<script type="text/javascript" src="./pacman.js"></script>
+	<script type="text/javascript" src="./movingPoints.js"> </script>
+	<script type="text/javascript" src="./board.js"></script>
+
+
+
+</head>
+
+<body>
+	<style>
+		body {
+		  background-image: url('4.jpg');
+		  background-repeat: no-repeat;
+		  background-attachment: fixed;
+		  background-size: cover;
+		}
+		</style>
+		 <header>
+			<img id="img1" class="header" src="spongBob.jpg" width="50" height="50" alt="some img">
+
+			<h7>SPONGEBOB VS. MR. KRABS    </h7>
+			Shachar 208240275 & Peleg 203842703
+		  </header>
+	<nav>
+		<div class="navigation" id="navigation">
+	
+			<a id="welcomeLink" onclick="showall('welcome','login','register','game')"  style="color: #f2f2f2;"> Welcome  &nbsp&nbsp</a>
+	
+			<a id="loginLink" onclick="showall('login','welcome','register','game')"  style="color: #f2f2f2;">Login  &nbsp&nbsp</a>
+	
+			<a id="requestLink" onclick="showall('register','login','welcome','game')"  style="color: #f2f2f2;">Register  &nbsp&nbsp</a>
+	
+			<a id="about" style="color: #f2f2f2;">About</a>
+	
+		</div>
+	
+	</nav>
+
+	<div id="welcome" class="welcome">
+	</br>
+</br>
+		<strong>WELCOME</strong>
+		<a href="#" onclick="return show('register','welcome');">
+			<button id="register_but">register</button>
+		</a>
+		<a href="#" onclick="return show('login','welcome');">
+			<button id="login_but">log in</button>
+		</a>
+	</div>
+
+	<div id="login" class="login" style="display:none">
+		<form id="loginForm" name="loginForm" method="get" autocomplete="off" action="">
+
+		<p>
+			<label>User name:</label>
+			<input id="user" class="user" type="text">
+		</p>
+		<p>
+			<label>Password:</label>
+			<input name="password" class="password" id="password" aria-invalid="false" aria-required="true"
+				type="password">
+		</p>
+		<p>
+			<a href="#" onclick="return login()">
+				<button id="goToGame" >Login</button>
+			</a>
+		</p>
+		<a href="#" onclick="return show('welcome','login');">
+			<button id="returnToWelcomeFromLogin">return to welcome</button>
+		</a>
+		</form>
+	</div>
+
+
+	<div class="register" id="register" style="display:none">
+		<form id="signupForm" name="signupForm" method="get" autocomplete="off" action="">
+			
+			<p>
+				<label for="firstName">First name:</label>
+				<input id="firstName" name="firstName" type="text"  required>
+			</p>
+			<p>
+				<label for="lastName">Last name:</label>
+				<input id="lastName" name="lastName" type="text"  required>
+			</p>
+			<p>
+				<label>User name:</label>
+				<input id="userName" name="userName" type="text" required>
+			</p>
+			<p>
+				<label>Password:</label>
+				<input id="registerPassword" name="registerPassword" type="password" required>
+			</p>
+			<p>
+				<label>confirm Password:</label>
+				<input id="registerConfirmpassword" name="registerConfirmpassword" type="password" required>
+			</p>
+			<p>
+				<label>E-mail address:</label>
+				<input id="email" name="email" type="email" required>
+			</p>
+			<p>
+				<label>Date of birth:</label>
+				<input type="date" id="date" name="birthdate" value="2000-01-01" min="1920-01-01" max="2020-04-13">
+			</p>
+			<p>
+					<button id="register_btn" type="submit" onclick="return registerNewUser()">register</button>
+			</p>
+
+
+			<a href="#" onclick="return show('welcome','register');">
+				<button id="returnToWelcomeFromRegister">return to welcome</button>
+			</a>
+			
+		</form>
+	
+	
+	</div>
+
+	<div id="aboutFrame" class="modal">
+		<div class="modal-content">
+		  <span class="close">&times;</span>
+		  <p> 
+			  This Pacman game created by Shachar Meretz & Peleg Biton
+			</br>
+			We used jQuery Plugin to validate registeration fields
+		  </br>
+		  We used the templete from class
+		  </br>
+		</br>
+	</br>
+			  The difficulties that we had while doing the project is:
+			</br>
+			1. To learn how to debug javascript code.
+		</br>
+		2. To validate registeration by jQuery
+		
+	</br>
+	</br>
+	</br>
+		Enjoy!
+		  </p>
+	</div>
+	</div>
+
+
+	<div id="setting" class="modal" style="display:none">
+		<style>
+			.setting{
+				text-align: center;
+			}
+			</style>
+
+		</br>
+		<legend></legend>
+
+	<form id="settingForm" name="settingForm" method="GET" autocomplete="off">
+
+	<form id="movementSetting" name="movementSetting" method="GET" autocomplete="off">
+	<fieldset>
+	<legend>movement setting</legend>
+			<p>
+				<label for="moveUp">move Up:</label>
+				<input id="settingsMoveUp" type="text" class="form-control" name="keyUp"  onkeydown="return setKeyboardControlKey(event , 'Up');" placeholder="Up Arrow">
+			</p>
+			<p>
+				<label for="moveDown">move Down:</label>
+				<input id="settingsMoveDown" type="text" class="form-control" name="keyDown"onkeydown="return setKeyboardControlKey(event ,'Down')" placeholder="Down Arrow">
+			</p>
+			<p>
+				<label for="moveLeft">move Left:</label>
+				<input id="settingsMoveLeft" type="text" class="form-control" name="keyLeft"onkeydown="return setKeyboardControlKey(event ,'Left')" placeholder="Left Arrow">
+			</p>
+			<p>
+				<label for="moveRight">move Right:</label>
+				<input id="settingsMoveRight" type="text" class="form-control" name="keyRight"onkeydown="return setKeyboardControlKey(event ,'Right')" placeholder="Right Arrow">
+			</p>
+	</fieldset>
+</form>
+
+<form id="pointsSetting" name="pointsSetting" method="GET" autocomplete="off">
+	<fieldset>
+		<legend>points setting</legend>
+			<p>
+			<label for="points">how many coins:</label>
+			<select id="points">
+				<option value="50">50</option>
+				<option value="55">55</option>
+				<option value="60">60</option>
+				<option value="65">65</option>
+				<option value="70">70</option>
+				<option value="75">75</option>
+				<option value="80">80</option>
+				<option value="85">85</option>
+				<option value="90">90</option>
+			  </select>
+			</p>
+			<style>
+					.img1{
+						height: 30px;
+						width: 30px;
+					}
+					.img2{
+						height: 30px;
+						width: 30px;
+					}
+					.img3{
+						height: 30px;
+						width: 30px;
+					}
+					.img4{
+						height: 30px;
+						width: 30px;
+					}
+					.img5{
+						height: 30px;
+						width: 30px;
+					}
+					.img6{
+						height: 30px;
+						width: 30px;
+					}
+				</style>
+				<p>
+				<label for="5Points">which for 5 points:</label>
+
+				<INPUT TYPE="radio" Name="5Points" ID="5Points1" Value="img1" checked="checked">  
+					  <img id="img1" class="img1" src="4.png" alt="some img">
+
+				<INPUT TYPE="radio" Name="5Points" ID="5Points2" Value="img2">
+					<img id="img2" class="img2" src="pineapple.png" alt="some img">
+
+
+				</br>
+
+				<label for="15Points">which for 15 points:</label>
+				
+				<INPUT TYPE="radio" Name="15Points" ID="15Points1" Value="img1" checked="checked">  
+					  <img id="img1" class="img1" src="jelly1.png" alt="some img">
+
+				<INPUT TYPE="radio" Name="15Points" ID="15Points2" Value="img2">
+					<img id="img2" class="img2" src="jelly2.png" alt="some img">
+
+				</br>
+
+				<label for="25Points">which for 25 points:</label>
+				
+				<INPUT TYPE="radio" Name="25Points" ID="25Points1" Value="img1" checked="checked">  
+					  <img id="img1" class="img1" src="monster2.png" alt="some img">
+
+				<INPUT TYPE="radio" Name="25Points" ID="25Points2" Value="img2">
+					<img id="img2" class="img2" src="plankton1.png" alt="some img">
+			</p>	
+		</fieldset>
+	</form>
+
+	<form id="monstersSetting" name="monstersSetting" method="GET" autocomplete="off">
+	<fieldset>
+			<legend>monsters setting</legend>
+			<style>
+				.img7{
+					height: 30px;
+					width: 30px;
+				}
+			</style>
+
+			<p>
+			<label for="monsters">how many monsters:</label>
+		</br>
+
+			<INPUT TYPE="radio" class="1monster" Name="monster" ID="1monster" Value="img1">  
+				  <img id="img7" class="img7" src="monster.png" alt="some img">
+			</br>
+			<INPUT TYPE="radio" Name="monster" ID="2monster" Value="img2">
+				<img id="img7" class="img7" src="monster.png" alt="some img">
+				<img id="img7" class="img7" src="monster.png" alt="some img">
+			</br>
+
+			<INPUT TYPE="radio" Name="monster" ID="3monster" Value="img2" checked="checked">
+				<img id="img7" class="img7" src="monster.png" alt="some img">
+				<img id="img7" class="img7" src="monster.png" alt="some img">
+				<img id="img7" class="img7" src="monster.png" alt="some img">
+			</br>
+
+			<INPUT TYPE="radio" Name="monster" ID="4monster" Value="img2">
+				<img id="img7" class="img7" src="monster.png" alt="some img">
+				<img id="img7" class="img7" src="monster.png" alt="some img">
+				<img id="img7" class="img7" src="monster.png" alt="some img">	
+				<img id="img7" class="img7" src="monster.png" alt="some img">		
+			</br>
+
+		</p>	
+		</fieldset>
+	</form>
+
+	<form id="timesSetting" name="timeSetting" method="GET" autocomplete="off">
+	<fieldset>
+			<legend>time setting</legend>
+			<p>
+			<label for="time">time for the game(in sec):</label>
+			<select id="time">
+				<option value="60">60</option>
+				<option value="90">90</option>
+				<option value="120">120</option>
+				<option value="150">150</option>
+				<option value="180">180</option>
+				<option value="210">210</option>
+				<option value="240">240</option>
+				<option value="270">270</option>
+				<option value="300">300</option>
+			  </select>
+			</p>
+		</fieldset>
+	</form>
+
+		<p>
+			<button id="register_btn" type="submit"onclick="return randomSetting();">random</button>
+			<button id="register_btn" type="submit" onclick="return GetSetting();">apply</button>
+
+		</p>
+
+		</form>
+	</div>
+
+
+	<div class="game" id="game" name="gameDiv" style="display:none">
+
+		<label for="username" class="username"><strong>NAME:</strong> <div id="display3"></div></label>&nbsp&nbsp
+		<label for="lblScore" class="lblScore"><strong>SCORE:</strong><div id="display1"></div></label>&nbsp&nbsp
+		<label for="lblTime" class="lblTime"><strong>TIME:</strong><div id="display2"></div></label>&nbsp&nbsp
+		<label for="lbllives" class="lives"><strong>LIVES:</strong><div id="display"></div></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+		<button id="newgame" name="newgame" onclick="return StartNewGame()">Start New Game</button>
+
+	</br>
+
+	<table>
+		<div id="gamecanvas">
+			<canvas id="canvas" height="600" width="960"></canvas>
+		</div>
+
+		<div id="showSetting" name="showSetting">
+	
+		<strong>clock:</strong>
+			<img id="clocksetting" src="clock1.png" width="50" height="50" />
+		</br>
+
+		<strong>moving candy for 50 points :</strong>
+			<img id="gerrisetting" src="gerri1.png" width="50" height="50"/>
+		</br>
+
+		<strong>power :</strong>
+		<img id="powersetting" src="power.png" width="50" height="50" />
+	</br>
+
+		<strong>	monster:</strong>
+			<img id="monster" src="monster.png" width="50" height="50" />
+		</br>
+		<strong>5 points candy:</strong>
+			<img id="fivePoints1setting" src="4.png" width="50" height="50" />
+			<img id="fivePoints2setting" src="pineapple.png" width="50" height="50" />
+		</br>
+
+		<strong>15 points candy:</strong>
+			<img id="fifteenPoints1setting" src="jelly1.png" width="50" height="50" />
+			<img id="fifteenPoints2setting" src="jelly2.png" width="50" height="50" />
+		</br>
+
+		<strong>25 points candy:</strong>
+			<img id="twentyfivePoints1setting" src="monster2.png" width="50" height="50" />
+			<img id="twentyfivePoints2setting" src="plankton1.png" width="50" height="50" />
+		
+		<label for="username" class="MONSTER"><strong>MONSTER:</strong> <div id="display5"></div></label>
+	</br>
+		<label for="username" class="POINT"><strong>POINT:</strong> <div id="display6"></div></label>
+	</br>
+		<label for="username" class="TIME"><strong>TIME:</strong> <div id="display7"></div></label>
+	</br>
+		<label for="username" class="UP"><strong>UP:</strong> <div id="display8"></div></label>
+	</br>
+		<label for="username" class="DOWN"><strong>DOWN:</strong> <div id="display9"></div></label>
+	</br>
+		<label for="username" class="LEFT"><strong>LEFT:</strong> <div id="display10"></div></label>
+	</br>
+		<label for="username" class="RIGHT"><strong>RIGHT:</strong> <div id="display11"></div></label>
+
+		</div>
+
+		</table>
+
+		<img id="burger" src="4.png" width="0" height="0" hidden/>
+		<img id="pacmanright" src="right.png" width="0" height="0" hidden/>
+		<img id="pacmanleft" src="left.png" width="0" height="0" hidden/>
+		<img id="pacmanup" src="up.png" width="0" height="0" hidden/>
+		<img id="pacmandown" src="down.png" width="0" height="0" hidden/>
+		<img id="monster" src="monster.png" width="0" height="0" hidden/>
+		<img id="monster2" src="monster2.png" width="0" height="0" hidden/>
+		<img id="pineapple" src="pineapple.png" width="0" height="0" hidden/>
+		<img id="jelly1" src="jelly1.png" width="0" height="0" hidden/>
+		<img id="jelly2" src="jelly2.png" width="0" height="0" hidden/>
+		<img id="plankton1" src="monster2.png" width="0" height="0" hidden/>
+		<img id="plankton2" src="plankton1.png" width="0" height="0" hidden/>
+		<img id="gerri" src="gerri1.png" width="0" height="0" hidden/>
+		<img id="clock" src="clock1.png" width="0" height="0" hidden/>
+		<img id="power" src="power.png" width="0" height="0" hidden/>
+	</div>
+</br>
+	<footer>
+		<p>Contact information:&nbsp&nbsp&nbsp&nbsp Shachar - meretz@post.bgu.ac.il     &nbsp&nbsp&nbsp&nbsp  Peleg - pelegbi@bgu.ac.il
+		<img id="logo" name="logo" style="float: right;" class="footer" src="melahGas.jfif" width="40" height="40" alt="some img">
+	</p>
+	</footer>
+
+
+	<!---------the div for lose win -------->
+	<div id="lostLives" class="modal">
+		<div class="modal-content1">
+		  <span class="close1">&times;</span>
+		  <style>  
+		  #lostLives {
+ 		 position: relative;
+  		 text-align: center;
+ 		 color: rgb(15, 6, 6);
+		 }
+		  h2{
+		  color: rgb(15, 6, 6);
+ 		  position: absolute;
+		  bottom: 8px;
+		  left: 8px;
+		  font-size: 18px;
+		}
+		  #lostLives , .modal-content1{
+			text-align: center;
+			position: absolute;
+  			float: left;
+ 		    left: 50%;
+			top: 50%;
+ 			transform: translate(-50%, -50%);
+		  }
+		
+		</style>
+		<h2>Loser!!!</h2>	
+		</br>
+		  <img id="loser" src="loser.gif" width="350" height="200" />
+	</div>
+	</div>
+	
+<script> 
+	var modal = document.getElementById("lostLives");
+	var span = document.getElementsByClassName("close1")[0];
+	span.onclick = function() {
+		$("#lostLives").hide();
+	}
+</script>
+
+
+
+<div id="lostScore" class="modal">
+	<div class="modal-content2">
+	  <span class="close2">&times;</span>
+	  <style>  
+	  #lostScore{
+		position: relative;
+  		 text-align: center;
+ 		 color: rgb(15, 6, 6);
+	  }
+	  h3{
+		  color: rgb(15, 6, 6);
+ 		  position: absolute;
+		  bottom: 8px;
+		  left: 8px;
+		  font-size: 14px;
+		}
+		#lostScore , .modal-content2{
+			text-align: center;
+			position: absolute;
+  			float: left;
+ 		    left: 50%;
+			top: 50%;
+ 			transform: translate(-50%, -50%);
+		  }
+	</style>
+	<h3 for="losePoint" class="losePoint">YOU ARE BETTER THAN &nbsp<div id="display4"></div> &nbsp POINTS !!!</h3>	
+	</br>
+	  <img id="loser" src="loser.gif" width="350" height="200" />
+</div>
+</div>
+
+<script> 
+var modal = document.getElementById("lostScore");
+var span = document.getElementsByClassName("close2")[0];
+span.onclick = function() {
+	$("#lostScore").hide();
+}
+</script>
+
+<div id="win" class="modal">
+	<div class="modal-content3">
+	  <span class="close3">&times;</span>
+	  <style>  
+	  #win{
+		position: relative;
+  		 text-align: center;
+		  color: rgb(15, 6, 6);
+	  }
+	  h4{
+		  color: rgb(15, 6, 6);
+ 		  position: absolute;
+		  bottom: 8px;
+		  left: 8px;
+		  font-size: 18px;
+		}
+		#win , .modal-content3{
+			text-align: center;
+			position: absolute;
+  			float: left;
+ 		    left: 50%;
+			top: 50%;
+ 			transform: translate(-50%, -50%);
+		  }
+	</style>
+	<h4>WINNER!!!</h4>	
+	</br>
+	  <img id="winner" src="winner.gif" width="350" height="200" />
+</div>
+</div>
+	
+<script> 
+var modal = document.getElementById("win");
+var span = document.getElementsByClassName("close3")[0];
+span.onclick = function() {
+	$("#win").hide();
+}
+</script>
+
+
+
+
+<script> 
+	var modal = document.getElementById("aboutFrame");
+	var btn = document.getElementById("about");
+	
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	
+	// When the user clicks on the button, open the modal
+	btn.onclick = function() {
+	  modal.style.display = "block";
+	}
+	
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	  modal.style.display = "none";
+	}
+	
+	// When the user clicks anywhere outside of the modal, close it
+	
+	window.onclick = function(event) {
+	  if (event.target == modal ) {
+		modal.style.display = "none";
+	  }
+	}
+
+	$(document).keyup(function (e) {
+        if (e.keyCode === 27) {
+            $("#aboutFrame").hide();
+        }
+	}
+	);
+	
+
+	</script>
+
+
+</body>
+
+</html>
